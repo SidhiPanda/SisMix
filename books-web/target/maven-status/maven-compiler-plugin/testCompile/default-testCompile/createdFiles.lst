@@ -1,0 +1,9 @@
+com/sismics/books/rest/TestThemeResource.class
+com/sismics/books/rest/TestLocaleResource.class
+com/sismics/books/rest/model/FacebookUser.class
+com/sismics/books/rest/TestTagResource.class
+com/sismics/books/rest/TestAppResource.class
+com/sismics/books/rest/TestSecurity.class
+com/sismics/books/rest/TestBookResource.class
+com/sismics/books/rest/TestConnectResource.class
+com/sismics/books/rest/TestUserResource.class

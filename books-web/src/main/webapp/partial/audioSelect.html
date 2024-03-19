@@ -1,0 +1,69 @@
+<style>
+    .o {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    .dropdown-container {
+        margin-bottom: 20px;
+    }
+    .dropdown-container label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .dropdown-container select {
+        width: 200px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .result-container {
+        margin-top: 20px;
+    }
+    .proceed-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #3498db;
+        color: #fff;
+    }
+</style>
+
+<div class="o" ng-if="isLoggedIn">
+    <div class="dropdown-container">
+        <label for="audioProvider">Select Audio Provider:</label>
+        <select id="audioProvider" ng-model="selectedProvider">
+            <option value="spotify">Spotify</option>
+            <option value="itunes">iTunes</option>
+        </select>
+    </div>
+
+    <div class="dropdown-container">
+        <label for="mediaType">Select Media Type:</label>
+        <select id="mediaType" ng-model="selectedAudio">
+            <option value="audiobook">Audiobooks</option>
+            <option value="podcast">Podcasts</option>
+        </select>
+    </div>
+
+    <div class="result-container">
+        <h3>Selected Options:</h3>
+        <p id="selectedAudioProvider"></p>
+        <p id="selectedMediaType"></p>
+    </div>
+
+    <div ng-if="(selectedAudio === 'audiobook' || selectedAudio === 'podcast') && (selectedProvider === 'spotify' || selectedProvider === 'itunes')">
+        <a href="#/audioSearch/{{selectedAudio}}/{{selectedProvider}}">
+            <button class="proceed-button">Proceed</button>
+        </a>
+    </div>
+    <div ng-if="!(selectedAudio === 'audiobook' || selectedAudio === 'podcast') || !(selectedProvider === 'spotify' || selectedProvider === 'itunes')">
+        <button class="proceed-button" ng-click="showAlert()">Proceed</button>
+    </div>
+<!--    <button class="proceed-button" ng-click="printfn()">Proceed</button>-->
+</div>
+
+ <div style="text-align: center; font-size: 18px; margin-top: 20px;" ng-if="!isLoggedIn">
+        <p>Please <a href="#/login">login</a> to access this resource.</p>
+ </div>

@@ -1,0 +1,74 @@
+<style>
+    .o {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    .dropdown-container {
+        margin-bottom: 20px;
+    }
+    .dropdown-container label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .dropdown-container select {
+        width: 200px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .result-container {
+        margin-top: 20px;
+    }
+    .proceed-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #3498db;
+        color: #fff;
+        margin-left: 15px;
+    }
+</style>
+
+
+<div class="o" ng-init="loadData()">
+    <h1 style="text-align: center; font-family: 'Audrey'; font-size:xxx-large"><b>Favorites</b></h1>
+    <div class="dropdown-container">
+        <label for="mediaType">Select Media Type:</label>
+        <select id="mediaType" ng-model="mediaType">
+            <option value="audiobook">Audiobooks</option>
+            <option value="podcast">Podcasts</option>
+        </select>
+        <button class="proceed-button" ng-click="loadData()">Proceed</button>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row book-list" infinite-load="pageBooks(true)" infinite-margin="200">
+
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 book" ng-repeat="audio in audioItems">
+                <a class="thumbnail"> <!-- remove the href if not doing view -  href="#/book/view/{{ audio.id }}" -->
+                    <div class="image">
+                        <img ng-src="{{ audio.coverUrl }}" title="{{ audio.title }}" />
+                    </div>
+                    <div class="caption">
+                        <p class="text-primary text-center">{{ audio.title }}</p>
+                        <p class="text-muted text-center" ng-show="mediaType == 'audiobook'">{{ audio.author }}</p>
+                        <p class="text-muted text-center" ng-show="mediaType == 'podcast'">{{ audio.host }}</p>
+                    </div>
+                    <button class="btn btn-default btn-favorite"
+                            style="position: absolute; top: 5px; right: 5px;" ng-click="remFavorites(audio.id); "><i class="fa fa-minus"></i></button>
+                </a>
+            </div>
+
+            <div class="col-md-12 text-center" ng-show="audioItems.length == 0">
+                No Audio
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div style="text-align: center; font-size: 18px; margin-top: 20px;">-->
+<!--    <p>Please <a href="#/login">login</a> to access this resource.</p>-->
+<!--</div>-->

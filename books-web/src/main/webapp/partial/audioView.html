@@ -1,0 +1,29 @@
+<div class="row" ng-show="!audio">
+    <div class="col-md-12">
+        <img src="img/loader.gif" />
+    </div>
+</div>
+
+<div class="row" ng-show="audio">
+    <div class="col-md-12">
+        <h2>{{ audio.title }}
+            <small ng-show="audio.type == 'audiobook'"> {{ audio.author }} </small>
+            <small ng-show="audio.type == 'podcast'"> {{ audio.host }} </small>
+        </h2>
+
+        <p class="pull-left">
+            <img ng-src="{{audio.coverUrl}}" class="cover-book-view" />
+        </p>
+        <p class="clearfix">{{ audio.description }}</p>
+
+        <dl class="dl-horizontal">
+            <dt>Genre</dt>
+            <dd>{{ audio.genre }}</dd>
+            <dt>Languages</dt>
+            <dd>{{ audio.language }}</dd>
+            <dt>Explicitness</dt>
+            <dd ng-show="audio.explicit == 'Explicit'"><span>&#129324; </span></dd>
+            <dd ng-show="audio.explicit == true"><span>&#129324; </span></dd>
+        </dl>
+    </div>
+</div>
